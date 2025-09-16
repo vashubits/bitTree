@@ -1,39 +1,39 @@
-'use client'
-import React, { useState, useEffect } from 'react'
-import { useFirebase } from '../context/firebase'
-import { useRouter } from 'next/navigation'
-import { toast, ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+'use client';
+import React, { useState, useEffect } from 'react';
+import { useFirebase } from '../context/firebase';
+import { useRouter } from 'next/navigation';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginPage = () => {
-  const firebase = useFirebase()
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const router = useRouter()
+  const firebase = useFirebase();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     if (firebase.isLogin) {
-      router.push('/')
+      router.push('/');
     }
-  }, [firebase, router])
+  }, [firebase, router]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (!email || !password) {
-      toast.warning("⚠️ Please fill in both fields.")
-      return
+      toast.warning("⚠️ Please fill in both fields.");
+      return;
     }
 
     try {
-      const user = await firebase.signinUserWithEmailAndPass(email, password)
+      const user = await firebase.signinUserWithEmailAndPass(email, password);
       if (user) {
-        toast.success("🎉 Login successful!")
-        setTimeout(() => router.push('/'), 1500) 
+        toast.success("🎉 Login successful!");
+        setTimeout(() => router.push('/'), 1500);
       }
     } catch (error) {
-      toast.error("❌ " + error.message)
+      toast.error("❌ " + error.message);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-emerald-200 px-4">
@@ -116,10 +116,9 @@ const LoginPage = () => {
         </p>
       </div>
 
-      {/* ✅ Toast container */}
       <ToastContainer position="top-center" autoClose={2000} theme="colored" />
     </div>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;

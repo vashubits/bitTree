@@ -1,41 +1,41 @@
-"use client";
-import React, { useState } from "react";
-import { useFirebase } from "../context/firebase";
-import { useRouter } from "next/navigation";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+'use client';
+import React, { useState } from 'react';
+import { useFirebase } from '../context/firebase';
+import { useRouter } from 'next/navigation';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
   const firebase = useFirebase();
   const router = useRouter();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPass, setConfirmPass] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPass, setConfirmPass] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!email || !password || !confirmPass) {
-      toast.error("⚠️ Please fill all fields.");
+      toast.error('⚠️ Please fill all fields.');
       return;
     }
 
     if (password !== confirmPass) {
-      toast.warning("🔑 Passwords do not match!");
+      toast.warning('🔑 Passwords do not match!');
       return;
     }
 
     try {
       const res = await firebase.signupUserWithEmailAndPass(email, password);
       if (res) {
-        toast.success("🎉 Account created successfully!");
+        toast.success('🎉 Account created successfully!');
         setTimeout(() => {
-          router.push("/");
-        }, 1500); // redirect after toast
+          router.push('/');
+        }, 1500);
       }
     } catch (error) {
-      toast.error("❌ " + error.message);
+      toast.error('❌ ' + error.message);
     }
   };
 
@@ -62,10 +62,7 @@ const Signup = () => {
           </div>
 
           <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium mb-1"
-            >
+            <label htmlFor="password" className="block text-sm font-medium mb-1">
               Password
             </label>
             <input
@@ -79,10 +76,7 @@ const Signup = () => {
           </div>
 
           <div>
-            <label
-              htmlFor="confirmPassword"
-              className="block text-sm font-medium mb-1"
-            >
+            <label htmlFor="confirmPassword" className="block text-sm font-medium mb-1">
               Confirm Password
             </label>
             <input
@@ -104,9 +98,9 @@ const Signup = () => {
         </form>
 
         <p className="mt-6 text-center text-gray-600">
-          Already have an account?{" "}
+          Already have an account?{' '}
           <button
-            onClick={() => router.push("/login")}
+            onClick={() => router.push('/login')}
             className="text-emerald-600 font-semibold hover:underline"
           >
             Login
@@ -114,7 +108,6 @@ const Signup = () => {
         </p>
       </div>
 
-      {/* Toast container */}
       <ToastContainer
         position="top-center"
         autoClose={2000}

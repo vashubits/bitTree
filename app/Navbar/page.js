@@ -1,18 +1,17 @@
-'use client'
-import React from 'react'
-import { usePathname, useRouter } from 'next/navigation'
+'use client';
+import React from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 
 const Navbar = () => {
-  const path = usePathname()
-  const router = useRouter()
+  const path = usePathname();
+  const router = useRouter();
 
   if (path !== '/' && path !== '/generate') {
-    return null
+    return null;
   }
 
   return (
-    <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 w-[90%] max-w-5xl bg-white px-5 py-3 sm:py-4 flex justify-between mb-10 items-center rounded-full shadow-md z-50">
-      
+    <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 w-[90%] max-w-5xl bg-white px-5 py-3 sm:py-4 flex justify-between items-center rounded-full shadow-md z-50">
       <div className="flex items-center">
         <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl text-gray-800">BitTree</h1>
       </div>
@@ -32,7 +31,7 @@ const Navbar = () => {
         </button>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

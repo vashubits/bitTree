@@ -1,5 +1,5 @@
-'use client'
-import React, { useState } from 'react'
+'use client';
+import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { useFirebase } from '../context/firebase';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -10,26 +10,26 @@ const Generate = () => {
   const name = search.get("handle");
   const router = useRouter();
   
-  const [links, setLinks] = useState([{ shortname: "", url: "" }])
-  const [nickname, setNickname] = useState(name)
-  const [description, setDescription] = useState("")
-  const [profile, setProfile] = useState("")
+  const [links, setLinks] = useState([{ shortname: "", url: "" }]);
+  const [nickname, setNickname] = useState(name);
+  const [description, setDescription] = useState("");
+  const [profile, setProfile] = useState("");
 
   const firebase = useFirebase();
 
-  const handleAdd = () => setLinks([...links, { shortname: "", url: "" }])
+  const handleAdd = () => setLinks([...links, { shortname: "", url: "" }]);
   const handleRemove = (index) => {
     if (links.length === 1) return;
     const updated = [...links];
     updated.splice(index, 1);
     setLinks(updated);
-  }
+  };
   const handleChange = (index, e) => {
-    const { name, value } = e.target
-    const updated = [...links]
-    updated[index][name] = value
-    setLinks(updated)
-  }
+    const { name, value } = e.target;
+    const updated = [...links];
+    updated[index][name] = value;
+    setLinks(updated);
+  };
 
   const handleCreate = async () => {
     try {
@@ -42,12 +42,11 @@ const Generate = () => {
       console.error(err);
       toast.error("Failed to create BitTree ❌");
     }
-  }
+  };
 
   return (
     <div className="bg-pink-200 pt-[12vh] min-h-screen flex flex-col lg:flex-row px-4 lg:px-20 py-10 gap-10">
 
-      
       <div className="flex flex-col gap-4 w-full lg:w-1/2 items-center lg:items-start">
         <input 
           type="text"
@@ -73,7 +72,6 @@ const Generate = () => {
 
         <ToastContainer />
 
-    
         {links.map((item, index) => (
           <div key={index} className="flex flex-col sm:flex-row gap-3 w-full">
             <input
@@ -115,7 +113,6 @@ const Generate = () => {
         </button>
       </div>
 
-
       <div className="w-full lg:w-1/2 bg-white rounded-xl p-6 shadow-md flex flex-col gap-4">
         <h2 className="text-2xl font-bold text-center lg:text-left">Steps to Create Your BitTree</h2>
         <ol className="list-decimal list-inside space-y-2 text-base sm:text-lg font-medium">
@@ -131,7 +128,7 @@ const Generate = () => {
       </div>
 
     </div>
-  )
-}
+  );
+};
 
-export default Generate
+export default Generate;

@@ -15,7 +15,6 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
   signInWithPopup,
-  signOut,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 
@@ -44,34 +43,26 @@ export const FirebaseProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
-
     return () => unsubscribe();
   }, []);
 
   const create = async (nickname, description, profilePic, links) => {
     const ref = collection(firestore, "users");
-
     const res = await addDoc(ref, {
       Name: nickname,
       Desc: description,
       ProfilePic: profilePic,
       Links: links,
     });
-
     return res;
   };
+
   const details = async (nickname) => {
     const q = query(collection(firestore, "users"), where("Name", "==", nickname));
     const snapshot = await getDocs(q);
-
-    if (snapshot.empty) {
-      return null;
-    }
-
+    if (snapshot.empty) return null;
     const doc = snapshot.docs[0];
-    const data = doc.data();
-
-    return data;
+    return doc.data();
   };
 
   const signinUserWithEmailAndPass = async (email, password) => {
@@ -80,7 +71,7 @@ export const FirebaseProvider = ({ children }) => {
       setUser(res.user);
       return res.user;
     } catch (error) {
-      console.error("Login Error:", error.message);
+      console.error(error.message);
       alert(error.message);
     }
   };
@@ -91,7 +82,7 @@ export const FirebaseProvider = ({ children }) => {
       setUser(res.user);
       return res.user;
     } catch (error) {
-      console.error("Signup Error:", error.message);
+      console.error(error.message);
       alert(error.message);
     }
   };
@@ -102,12 +93,10 @@ export const FirebaseProvider = ({ children }) => {
       setUser(res.user);
       return res.user;
     } catch (error) {
-      console.error("Google Login Error:", error.message);
+      console.error(error.message);
       alert(error.message);
     }
   };
-
- 
 
   const isLogin = user != null;
 
@@ -121,7 +110,6 @@ export const FirebaseProvider = ({ children }) => {
         signinUserWithEmailAndPass,
         signupUserWithEmailAndPass,
         signinwithgoogle,
-       
       }}
     >
       {children}

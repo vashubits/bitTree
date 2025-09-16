@@ -1,8 +1,8 @@
-"use client"
+"use client";
 import { ToastContainer, toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import Navbar from './Navbar/page'; // make sure path is correct
+import Navbar from './Navbar/page';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
@@ -29,13 +29,10 @@ export default function Home() {
   return (
     <div className="min-h-screen pt-[10vh] bg-[#254f1a] flex flex-col">
       
-      {/* Navbar */}
       <Navbar />
 
-      {/* Main Content */}
       <div className="flex flex-col lg:flex-row items-center justify-center px-4 lg:px-20 py-10 gap-10 flex-1">
         
-        {/* Left Section */}
         <div className="flex flex-col justify-center items-start lg:w-1/2 w-full text-center lg:text-left">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#d2e823]">
             Everything you are. In one, simple link in bio.
@@ -44,7 +41,6 @@ export default function Home() {
             Join 70M+ people using Linktree for their link in bio. One link to help you share everything you create, curate and sell from your Instagram, TikTok, Twitter, YouTube and other social media profiles.
           </p>
 
-          {/* Create BitTree */}
           <div className="flex flex-col sm:flex-row gap-4 mb-5 w-full">
             <input
               onChange={(e) => setName(e.target.value)}
@@ -61,7 +57,6 @@ export default function Home() {
             </button>
           </div>
 
-          {/* Review BitTree */}
           <div className="flex flex-col sm:flex-row gap-4 w-full">
             <input
               onChange={(e) => setNickname(e.target.value)}
@@ -79,7 +74,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Right Section (Image) */}
         <div className="lg:w-1/2 w-full flex justify-center items-center">
           <img className="w-full max-w-md lg:max-w-xl" src="/photo.png" alt="photo" />
         </div>
