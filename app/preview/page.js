@@ -46,22 +46,21 @@ const Preview = () => {
 
   return (
     <div className="bg-emerald-200 min-h-screen flex flex-col items-center py-10">
-      {/* Profile Picture */}
+    
       <img
         src={data.ProfilePic}
         alt={data.Name}
         className="w-32 h-32 rounded-full shadow-lg border-4 border-white"
       />
 
-      {/* Nickname */}
+     
       <h1 className="text-3xl font-bold mt-4">{data.Name}</h1>
 
-      {/* Description */}
+      
       <p className="text-gray-700 mt-2 text-center px-4 max-w-lg">
         {data.Desc}
       </p>
 
-      {/* Links */}
       <div className="mt-6 w-full max-w-md flex flex-col gap-3">
         {data.Links && data.Links.map((link, index) => (
           <a
