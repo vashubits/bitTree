@@ -28,16 +28,16 @@ const Preview = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-emerald-200">
-        <p className="text-xl font-semibold">Loading...</p>
+      <div className="flex items-center justify-center min-h-screen bg-emerald-200 px-4">
+        <p className="text-xl sm:text-2xl font-semibold">Loading...</p>
       </div>
     )
   }
 
   if (!data) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-emerald-200">
-        <p className="text-xl font-semibold text-red-600">
+      <div className="flex items-center justify-center min-h-screen bg-emerald-200 px-4">
+        <p className="text-xl sm:text-2xl font-semibold text-red-600 text-center">
           No BitTree found for "{nickname}"
         </p>
       </div>
@@ -45,30 +45,30 @@ const Preview = () => {
   }
 
   return (
-    <div className="bg-emerald-200 min-h-screen flex flex-col items-center py-10">
-    
+    <div className="bg-emerald-200 min-h-screen flex flex-col items-center py-10 px-4 sm:px-6 lg:px-20">
+      
       <img
         src={data.ProfilePic}
         alt={data.Name}
-        className="w-32 h-32 rounded-full shadow-lg border-4 border-white"
+        className="w-24 h-24 sm:w-32 sm:h-32 rounded-full shadow-lg border-4 border-white"
       />
 
-     
-      <h1 className="text-3xl font-bold mt-4">{data.Name}</h1>
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-4 text-center">
+        {data.Name}
+      </h1>
 
-      
-      <p className="text-gray-700 mt-2 text-center px-4 max-w-lg">
+      <p className="text-gray-700 mt-2 text-center px-2 sm:px-4 md:px-8 max-w-full sm:max-w-lg md:max-w-xl">
         {data.Desc}
       </p>
 
-      <div className="mt-6 w-full max-w-md flex flex-col gap-3">
+      <div className="mt-6 w-full max-w-xs sm:max-w-md md:max-w-lg flex flex-col gap-3">
         {data.Links && data.Links.map((link, index) => (
           <a
             key={index}
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block bg-white text-center font-semibold py-3 rounded-xl shadow-md hover:bg-emerald-300 transition"
+            className="block bg-white text-center font-semibold py-3 sm:py-4 rounded-xl shadow-md hover:bg-emerald-300 transition text-sm sm:text-base md:text-lg"
           >
             {link.shortname || link.url}
           </a>

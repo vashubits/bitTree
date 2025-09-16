@@ -1,29 +1,38 @@
 'use client'
 import React from 'react'
-import { usePathname } from 'next/navigation'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 const Navbar = () => {
-  const path = usePathname();
-  const router = useRouter();
-  if(path!='/' && path!='/generate'){
-    return null;
+  const path = usePathname()
+  const router = useRouter()
+
+  if (path !== '/' && path !== '/generate') {
+    return null
   }
+
   return (
-    <div className='fixed w-[80vw] my-15 bg-white pl-10 py-5 flex justify-between rounded-full mx-[10vw] '>
-      <div className='flex flex items-center'> 
-        <h1 className='font-semiboldbold text-4xl'>BitTree</h1>
-       
+    <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 w-[90%] max-w-5xl bg-white px-5 py-3 sm:py-4 flex justify-between mb-10 items-center rounded-full shadow-md z-50">
+      
+      <div className="flex items-center">
+        <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl text-gray-800">BitTree</h1>
       </div>
 
-      <div className='flex  '>
-        <button onClick={()=> router.push('/login')} className='bg-gray-200 py-4 px-6 font-semibold rounded-sm'>Log in </button>
-        <button onClick={()=> router.push('/signup')} className='text-white font-semibold py-4 px-5 rounded-full bg-slate-900 mx-3'> Sign up free</button>
+      <div className="flex items-center gap-3 sm:gap-4">
+        <button
+          onClick={() => router.push('/login')}
+          className="bg-gray-200 py-2 sm:py-3 px-4 sm:px-6 font-semibold rounded-md hover:bg-gray-300 transition"
+        >
+          Log in
+        </button>
+        <button
+          onClick={() => router.push('/signup')}
+          className="bg-gray-900 text-white py-2 sm:py-3 px-4 sm:px-6 font-semibold rounded-full hover:bg-gray-800 transition"
+        >
+          Sign up free
+        </button>
       </div>
-    </div>
+    </nav>
   )
-
-
 }
 
 export default Navbar
