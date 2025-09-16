@@ -39,7 +39,7 @@ const Preview = () => {
     return (
       <div className="flex items-center justify-center min-h-screen bg-emerald-200 px-4">
         <p className="text-xl sm:text-2xl font-semibold text-red-600 text-center">
-          No BitTree found for '{nickname}'
+        `  No BitTree found for ${nickname}`
         </p>
       </div>
     );
@@ -52,7 +52,7 @@ const Preview = () => {
         alt={data.Name}
         width={128}
         height={128}
-        className="rounded-full shadow-lg border-4 border-white"
+        className="w-32 h-32 rounded-full shadow-lg border-4 border-white"
       />
 
       <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-4 text-center">
